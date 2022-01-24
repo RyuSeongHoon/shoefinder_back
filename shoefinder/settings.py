@@ -54,13 +54,23 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # 'webpack_loader',
+    'rest_framework',
+    'corsheaders',
     'home',
     'contents',
     'users',
-    'rest_framework'
+    'testapi',   
 ]
 
+# REST_FRAMEWORK = {
+#     'DEFAULT_PERMISSION_CLASSES': (
+#         'rest_framework.permissions.DjangoModelPermissions',
+#     )
+# }
+
+
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -113,6 +123,19 @@ DATABASES = {
     #     "PORT": env("POSTGRES_PORT"),
     # }
 }
+
+CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ALLOWED_ORIGINS = [
+#     "http://localhost:3000",
+#     "http://127.0.0.1:8000",
+# ]
+API_URL = "localhost:8000"
+CORS_ORIGIN_WHITELIST = [
+    "http://localhost:3000",
+    "http://127.0.0.1:8000",
+]
+# CORS_ALLOW_HEADERS = ['*']
+# CSRF_TRUSTED_ORIGINS = ['*']
 
 # DATABASES["default"]["ATOMIC_REQUESTS"] = True  # noqa F405
 # DATABASES["default"]["CONN_MAX_AGE"] = env.int("CONN_MAX_AGE", default=60)  # noqa F405

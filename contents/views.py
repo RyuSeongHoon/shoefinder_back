@@ -31,14 +31,20 @@ def get_api(request):
 
 @api_view(['POST'])
 def post_api(request):
+    print("1. 물을 넣는다.")
     if request.method == 'GET':
+        print("2. 물이 끓으면 스프를 넣는다.")
         return HttpResponse(status=200)
+        
     if request.method == 'POST':
+        print("3. 후레이크를 첨가한다.")
         serializer = PostSerializer(data=request.data, many=True)
-        print("-----",serializer)
+        print(serializer)
         if(serializer.is_valid()):
+            print("4. 면을 넣는다.")
             serializer.save()
             return Response(serializer.data, status=200)
+        print("5. 맛있게 먹는다.")
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 # class ContentViewSet(viewsets.ModelViewSet):

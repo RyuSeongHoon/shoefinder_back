@@ -12,13 +12,9 @@ class Post(models.Model):
     shoe_size = models.IntegerField(verbose_name="사이즈")
     shoe_color = models.CharField(max_length=256, verbose_name="색깔")
 
-    # image = models.ImageField(
-    #     upload_to=PathAndRename("uploads/images"),
-    #     blank=True,
-    #     null=True,
-    #     validators=[validate_image_size],
-    #     verbose_name="이미지"
-    # )
+    image = models.ImageField(
+                        upload_to='%Y/%m/%d', blank=True, null=True)
+ 
 
     def __str__(self):
         return self.title
