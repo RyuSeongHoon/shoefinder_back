@@ -7,7 +7,7 @@ from rest_framework import status, viewsets
 from rest_framework.decorators import api_view 
 from rest_framework.response import Response 
 from django.http.response import HttpResponse 
-from .models import Test1
+from .models import Test
 from .serializers import TestSerializer
 
 # from contents import serializers
@@ -39,5 +39,5 @@ from .serializers import TestSerializer
 #         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class TestViewSet(viewsets.ModelViewSet):
-    queryset = Test1.objects.all()
+    queryset = Test.objects.all()
     serializer_class = TestSerializer
