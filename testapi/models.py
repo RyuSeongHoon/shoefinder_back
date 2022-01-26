@@ -13,8 +13,10 @@ class Test(models.Model):
     image = models.ImageField(
                         upload_to='shoe_images', blank=True, null=True)
 
+
+
     def __str__(self):
-        return self.title
+        return self.sub_id
 
     # class Meta:
     #     verbose_name = _('테스트')
