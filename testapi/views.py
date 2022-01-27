@@ -13,8 +13,8 @@ from django.http.response import HttpResponse
 
 from .models import Test
 from .serializers import TestSerializer
-from django.core import serializers
 from django.http import JsonResponse
+from rest_framework.renderers import JSONRenderer
 
 class TestViewSet(viewsets.ModelViewSet):
         
@@ -25,8 +25,8 @@ class TestViewSet(viewsets.ModelViewSet):
 
 
 def article_list(request, slug):
-    queryset = Test.objects.filter(sub_id=slug)# .values()
-    queryset_json = serializers.serialize('json',queryset)
-
-    # serializer = TestSerializer(queryset, many=True)
-    return HttpResponse(queryset_json)
+    queryset = Test.objects.filter(sub_id=slug).values()
+    # queryset = serializers.serialize("json", Test.objects.filter(sub_id=slug))
+    json = JSONRenderer().render(queryset)
+    print(type(queryset),queryset)
+    return HttpResponse(json)
